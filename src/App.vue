@@ -2,11 +2,15 @@
   <div id="app" class="small-container">
     <h1>Meetings</h1>
     <meeting-form @add:meeting="addMeeting"/>
-    <meetings-table :meetings="meetings" @delete:meeting="deleteMeeting" />
+    <meetings-table
+            :meetings="meetings"
+            @delete:meeting="deleteMeeting"
+            @edit:employee="editEmployee"/> <!--work in progress-->
   </div>
 </template>
 
 <script>
+  //tutorial used for meetings https://www.taniarascia.com/getting-started-with-vue/
   import MeetingsTable from '@/components/MeetingsTable.vue'
   import MeetingForm from "@/components/MeetingForm.vue";
   export default {
@@ -15,7 +19,7 @@
       MeetingsTable,
       MeetingForm,
     },
-    data(){
+    data(){https://www.taniarascia.com/getting-started-with-vue/
       return {
         meetings: [
         ],
@@ -36,6 +40,10 @@
         this.meetings = this.meetings.filter(
                 meeting => meeting.id !== id
         )
+      },
+      editMeeting(id, updatedMeeting){
+        this.meetings = this.meetings.map(meeting =>
+             meeting.id === id ? updatedMeeting : meeting)
       }
     },
   }
