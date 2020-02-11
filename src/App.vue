@@ -76,7 +76,10 @@
         <div class="ma-5">
             <v-card-title>Meetings</v-card-title>
             <v-card-text>
-                <meetings-table :meetings="meetings" @delete:meeting="deleteMeeting" />
+    <meetings-table
+            :meetings="meetings"
+            @delete:meeting="deleteMeeting"
+            @edit:employee="editEmployee"/> <!--work in progress-->
             </v-card-text>
         </div>
     </v-card>
@@ -182,6 +185,7 @@
 </template>
 
 <script>
+  //tutorial used for meetings https://www.taniarascia.com/getting-started-with-vue/
   import MeetingsTable from '@/components/MeetingsTable.vue'
   import MeetingForm from "@/components/MeetingForm.vue"
     import KanbanBoard from "@/components/Kanban.vue"
@@ -202,7 +206,7 @@
         SettingsProject,
         VisualSettings,
     },
-    data(){
+    data(){https://www.taniarascia.com/getting-started-with-vue/
       return {
         meetings: [
         ],
@@ -229,6 +233,10 @@
         this.meetings = this.meetings.filter(
                 meeting => meeting.id !== id
         )
+      },
+      editMeeting(id, updatedMeeting){
+        this.meetings = this.meetings.map(meeting =>
+             meeting.id === id ? updatedMeeting : meeting)
       },
     changePage(a) {
         this.activePage = a;
