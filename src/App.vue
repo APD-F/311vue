@@ -206,7 +206,7 @@
         SettingsProject,
         VisualSettings,
     },
-    data(){https://www.taniarascia.com/getting-started-with-vue/
+    data(){
       return {
         meetings: [
         ],
