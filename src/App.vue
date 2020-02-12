@@ -92,12 +92,60 @@
     <div v-if="activePage == 2">
       <v-container>
     <v-row>
-    <v-col>
+    <v-col :cols="4">
     <v-card hover tile elevation="2">
-        <div>
-            <v-card-title>Task Tracking (Kanban)</v-card-title>
+        <div class="ma-5">
+            <v-card-title>Backlog</v-card-title>
             <v-card-text>
-               <kanban-board></kanban-board>
+              <v-card color="blue" outlined class="mb-2">
+            <v-card-title >Task1</v-card-title>
+            <v-card-text>Such an important task</v-card-text>
+            <div class="text-center"><v-chip class="ma-2" color="white" outlined>
+                <v-icon left>mdi-account</v-icon> Person 1</v-chip></div>
+        </v-card>
+                <v-card color="red" outlined class="mb-2">
+            <v-card-title >Task2</v-card-title>
+            <v-card-text>Such an important task</v-card-text>
+            <div class="text-center"><v-chip class="ma-2" color="white" outlined>
+                <v-icon left>mdi-account</v-icon> Person 2</v-chip></div>
+        </v-card>
+            </v-card-text>
+        </div>
+    </v-card>
+    </v-col>
+    <v-col :cols="4">
+    <v-card hover tile elevation="2">
+        <div class="ma-5">
+            <v-card-title>In Progress</v-card-title>
+            <v-card-text>
+                <v-card color="purple" outlined class="mb-2">
+            <v-card-title >Task3</v-card-title>
+            <v-card-text>Such an important task</v-card-text>
+            <div class="text-center"><v-chip class="ma-2" color="white" outlined>
+                <v-icon left>mdi-account</v-icon> Person 3</v-chip></div>
+        </v-card>
+                <v-card color="green" outlined class="mb-2">
+            <v-card-title >Task4</v-card-title>
+            <v-card-text>Such an important task</v-card-text>
+            <div class="text-center"><v-chip class="ma-2" color="white" outlined>
+                <v-icon left>mdi-account</v-icon> Person 1</v-chip></div>
+        </v-card>
+                
+            </v-card-text>
+        </div>
+    </v-card>
+    </v-col>
+    <v-col :cols="4">
+    <v-card hover tile elevation="2">
+        <div class="ma-5">
+            <v-card-title>Finished</v-card-title>
+            <v-card-text>
+              <v-card color="grey" outlined class="mb-2">
+            <v-card-title >Task5</v-card-title>
+            <v-card-text>Such an important task</v-card-text>
+            <div class="text-center"><v-chip class="ma-2" color="white" outlined>
+                <v-icon left>mdi-account</v-icon> Person 2</v-chip></div>
+        </v-card>
             </v-card-text>
         </div>
     </v-card>
@@ -188,7 +236,7 @@
   //tutorial used for meetings https://www.taniarascia.com/getting-started-with-vue/
   import MeetingsTable from '@/components/MeetingsTable.vue'
   import MeetingForm from "@/components/MeetingForm.vue"
-    import KanbanBoard from "@/components/Kanban.vue"
+    //import KanbanBoard from "@/components/Kanban.vue"
     import PersonalNotes from "@/components/PersonalNotes.vue"
     import SettingsProject from "@/components/SettingsProject.vue"
     import VisualSettings from "@/components/VisualSettings.vue"
@@ -201,7 +249,7 @@
     components: {
         MeetingsTable,
         MeetingForm,
-        KanbanBoard,
+        //KanbanBoard,
         PersonalNotes,
         SettingsProject,
         VisualSettings,
