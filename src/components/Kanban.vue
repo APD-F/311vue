@@ -1,6 +1,11 @@
 <template>
     <div id="kanban-board">
-        <img src="https://media.istockphoto.com/vectors/kanban-board-vector-id905052030?k=6&m=905052030&s=612x612&w=0&h=BRCqntOVm78gDLgx5WyhzWt49npL4kUIdAsIU2Z_HoY=">
+        <v-card color="blue" outlined>
+            <v-card-title >{{title[0]}}</v-card-title>
+            <v-card-text>{{description[0]}}</v-card-text>
+            <div class="text-center"><v-chip class="ma-2" color="success" outlined>
+                <v-icon left>mdi-account</v-icon> Person1</v-chip></div>
+        </v-card>
     </div>
 </template>
 
@@ -10,6 +15,14 @@
         props: {
             
         },
+        
+        data(){
+            return{
+                title: ["task1", "task2"],
+                description: ["This is a important Task"]
+            }
+        },
+        
     }
 </script>
 
