@@ -33,6 +33,7 @@
                 <td v-else>
                     <button @click="editMode(meeting)">Edit</button>
                     <button @click="$emit('delete:meeting', meeting.id)">Delete</button>
+                    <!--<minutes></minutes>-->
                 </td>
             </tr>
             </tbody>
@@ -41,8 +42,10 @@
 </template>
 
 <script>
+  //  import Minutes from "./Minutes";
     export default {
         name: 'meetings-table',
+        //components: {Minutes},
         props: {
             meetings: Array,
         },
@@ -75,4 +78,5 @@
     button {
         margin: 0 0.5rem 0 0;
     }
+
 </style>
