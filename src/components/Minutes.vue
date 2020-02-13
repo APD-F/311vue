@@ -45,6 +45,11 @@
         data: () => ({
             dialog: false,
         }),
+        methods: {
+            openDialog(){
+                this.dialog = true
+            }
+        }
     }
 </script>
 
