@@ -49,6 +49,7 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Group<b>Awesome</b></v-toolbar-title>
+        
     </v-app-bar>
 
   <!-- Sizes your content based upon application components -->
@@ -95,7 +96,7 @@
     <v-col :cols="4">
     <v-card hover tile elevation="2">
         <div class="ma-5">
-            <v-card-title>Backlog</v-card-title>
+            <v-card-title>Backlog<v-layout align-end justify-end><v-btn outlined small color="success"><b>Add Task</b></v-btn></v-layout></v-card-title>
             <v-card-text>
               <v-card color="blue" outlined class="mb-2">
             <v-card-title >Task1</v-card-title>
@@ -150,6 +151,18 @@
         </div>
     </v-card>
     </v-col>
+    </v-row>
+    <v-row>
+        <v-col :cols="6">
+            <v-card>
+                <v-card-title>Announcments</v-card-title>
+            </v-card>
+        </v-col>
+        <v-col :cols="6">
+            <v-card>
+                <v-card-title>Progress</v-card-title>
+            </v-card>
+        </v-col>
     </v-row>
     </v-container>
     </div> 
