@@ -126,7 +126,7 @@
     <!--<v-col :cols="4">
     <v-card hover tile elevation="2">
         <div class="ma-5">
-            <v-card-title>Backlog</v-card-title>
+            <v-card-title>Backlog<v-layout align-end justify-end><v-btn outlined small color="success"><b>Add Task</b></v-btn></v-layout></v-card-title>
             <v-card-text>
                 <tasks v-bind:tasks="tasks" v-on:del-task="deleteTask"/>
                 <AddTask v-on:add-task="addTask"/>
