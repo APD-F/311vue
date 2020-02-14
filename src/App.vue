@@ -166,17 +166,17 @@
             <v-card-subtitle>All your tasks in all your projects</v-card-subtitle>
             <v-card-text>
                 <div>
-                <v-btn hover tile elevation="2">
-                    <v-btn-text>CSCI311</v-btn-text>
+                <v-card hover tile elevation="2">
+                    <v-card-title>CSCI311</v-card-title>
                     <personal-notes>
                     </personal-notes>
-                </v-btn>
+    </v-card>
                 </div>
                       
                 <div>
-                <v-btn hover tile elevation="2">
-                    <v-btn-text>CSCI375</v-btn-text>
-                </v-btn>
+                <v-card hover tile elevation="2">
+                    <v-card-title>CSCI375</v-card-title>
+                </v-card>
                 </div>
             </v-card-text>
         </div>
