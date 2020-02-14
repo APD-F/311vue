@@ -158,24 +158,40 @@
     <div v-if="activePage == 3">
       <v-container>
     <v-row>
-    <v-col>
-    <v-card hover tile elevation="2">
-        <div>
-            <v-card-title>Personal Notes</v-card-title>
-            <v-card-subtitle>these are your very own personal Notes</v-card-subtitle>
-            <v-card-text>
-               <personal-notes></personal-notes>
-            </v-card-text>
-        </div>
-    </v-card>
-    </v-col>
+
     <v-col>
     <v-card hover tile elevation="2">
         <div>
             <v-card-title>Your Tasks</v-card-title>
             <v-card-subtitle>All your tasks in all your projects</v-card-subtitle>
             <v-card-text>
-               <personal-notes></personal-notes>
+                <div>
+                <v-card hover tile elevation="2">
+                <v-card-title>CSCI311</v-card-title>
+                <personal-notes>
+                </personal-notes>
+                </v-card>
+                </div>
+                      
+                <div>
+                <v-card hover tile elevation="2">
+                <v-card-title>CSCI375</v-card-title>
+                </v-card>
+                </div>
+            </v-card-text>
+        </div>
+    </v-card>
+    </v-col>
+    
+    <v-col>
+    <v-card hover tile elevation="2">
+        <div>
+            <v-card-title>Personal Notes</v-card-title>
+            <v-card-subtitle>these are your very own personal Notes</v-card-subtitle>
+            <v-card-text>
+                <v-textarea auto-grow="true"
+                            name="personal-notes"
+                            rows=15></v-textarea>
             </v-card-text>
         </div>
     </v-card>
