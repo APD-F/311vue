@@ -91,6 +91,7 @@
     <!--                               The Main Page                                 -->
     <div v-if="activePage == 2">
       <v-container>
+    <v-row><v-btn outlined color="success">+ Add Task</v-btn></v-row>
     <v-row>
     <v-col :cols="4">
     <v-card hover tile elevation="2">
