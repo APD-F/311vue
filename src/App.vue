@@ -160,23 +160,23 @@
     <v-row>
 
     <v-col>
-    <v-card hover tile elevation="2">
-        <div>
+    <v-card hover tile elevation="2" height="508px">
+        <div class="ma-5">
             <v-card-title>Your Tasks</v-card-title>
             <v-card-subtitle>All your tasks in all your projects</v-card-subtitle>
             <v-card-text>
                 <div>
-                <v-card hover tile elevation="2">
-                <v-card-title>CSCI311</v-card-title>
-                <personal-notes>
-                </personal-notes>
-                </v-card>
+                <v-btn hover tile elevation="2">
+                    <v-btn-text>CSCI311</v-btn-text>
+                    <personal-notes>
+                    </personal-notes>
+                </v-btn>
                 </div>
                       
                 <div>
-                <v-card hover tile elevation="2">
-                <v-card-title>CSCI375</v-card-title>
-                </v-card>
+                <v-btn hover tile elevation="2">
+                    <v-btn-text>CSCI375</v-btn-text>
+                </v-btn>
                 </div>
             </v-card-text>
         </div>
@@ -185,7 +185,7 @@
     
     <v-col>
     <v-card hover tile elevation="2">
-        <div>
+        <div class="ma-5">
             <v-card-title>Personal Notes</v-card-title>
             <v-card-subtitle>these are your very own personal Notes</v-card-subtitle>
             <v-card-text>
