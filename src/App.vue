@@ -49,7 +49,31 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Group<b>Awesome</b></v-toolbar-title>
-        
+      <div class="text-center">
+    <v-menu offset-y>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          color="primary"
+          dark
+          v-on="on"
+          absolute
+          right
+          top
+        >
+          Select Project <v-icon dark right>mdi-menu-down</v-icon>
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="(item, index) in items"
+          :key="index"
+          @click="0"
+        >
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+  </div>
     </v-app-bar>
 
   <!-- Sizes your content based upon application components -->
@@ -126,7 +150,7 @@
                 <v-icon left>mdi-account</v-icon> Person 3</v-chip></div>
         </v-card>
                 <v-card color="green" outlined class="mb-2">
-            <v-card-title >Task4</v-card-title>
+            <v-card-title >Task4 <three-dot-menu/></v-card-title>
             <v-card-text>Such an important task</v-card-text>
             <div class="text-center"><v-chip class="ma-2" color="white" outlined>
                 <v-icon left>mdi-account</v-icon> Person 1</v-chip></div>
@@ -155,7 +179,7 @@
     <v-row>
         <v-col :cols="6">
             <v-card>
-                <v-card-title>Announcments</v-card-title>
+                <v-card-title>Announcments<three-dot-menu></three-dot-menu></v-card-title>
             </v-card>
         </v-col>
         <v-col :cols="6">
@@ -282,9 +306,20 @@
         PersonalNotes,
         SettingsProject,
         VisualSettings,
+        //ThreeDotMenu,
     },
     data(){
       return {
+        items: [
+        { title: 'Project 1' },
+        { title: 'Project 2' },
+        { title: 'Project 3' },
+        ],
+        carditems: [
+        { title: 'Project 1' },
+        { title: 'Project 2' },
+        { title: 'Project 3' },
+        ],
         meetings: [
         ],
         drawer: null,
