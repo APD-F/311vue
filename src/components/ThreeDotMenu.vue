@@ -1,7 +1,8 @@
 <template>
     <div id="three-dot-menu">
-        <v-menu bottom left>
+        <v-menu right offset-x>
             <template v-slot:activator="{ on }">
+              <v-spacer></v-spacer>
               <v-btn
                 dark
                 icon
@@ -29,10 +30,8 @@
         name:'three-dot-menu',
     data: () => ({
       items: [
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me 2' },
+        { title: 'Edit' },
+        { title: 'Delete' },
       ],
     }),
   }
