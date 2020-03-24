@@ -1,6 +1,6 @@
 <template>
 <v-app>
-  
+
   <v-navigation-drawer
       v-model="drawer"
       app
@@ -40,12 +40,12 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-        
+
       <template v-slot:append>
         <div class="pa-2 text-center">
           <v-btn rounded color="red" dark >Logout</v-btn>
         </div>
-      </template>  
+      </template>
     </v-navigation-drawer>
 
     <v-app-bar
@@ -85,9 +85,9 @@
   <!-- Sizes your content based upon application components -->
   <v-content>
     <div id="app" class="small-container">
-      
+
     <!--                            The Navigation                    -->
-    
+
     <!--                          The Meetings Page                                -->
     <div v-if="activePage == 1">
     <v-container>
@@ -118,7 +118,7 @@
     </v-row>
     </v-container>
     </div>
-    
+
     <!--                               The Main Page                                 -->
     <div v-if="activePage == 2">
       <v-container>
@@ -161,7 +161,7 @@
             <div class="text-center"><v-chip class="ma-2" color="white" outlined>
                 <v-icon left>mdi-account</v-icon> Person 1</v-chip></div>
         </v-card>
-                
+
             </v-card-text>
         </div>
     </v-card>
@@ -195,8 +195,8 @@
         </v-col>
     </v-row>
     </v-container>
-    </div> 
-        
+    </div>
+
     <!--                              The Personal Page                                -->
     <div v-if="activePage == 3">
       <v-container>
@@ -215,7 +215,7 @@
                 </personal-notes>
                 </v-card>
                 </div>
-                      
+
                 <div>
                 <v-card hover tile elevation="2">
                 <v-card-title>CSCI375</v-card-title>
@@ -225,7 +225,7 @@
         </div>
     </v-card>
     </v-col>
-    
+
     <v-col>
     <v-card hover tile elevation="2">
         <div>
@@ -241,8 +241,8 @@
     </v-col>
     </v-row>
     </v-container>
-    </div> 
-        
+    </div>
+
     <!--                                  Settings                                  -->
     <div v-if="activePage == 4">
       <v-container>
@@ -285,18 +285,18 @@
     </v-col>
     </v-row>
     </v-container>
-    </div> 
-      
+    </div>
+
     </div>
   </v-content>
-    
+
     <!--                                    End of Content                              -->
-    
+
   <v-footer app>
     Credit: Best Group
   </v-footer>
 </v-app>
-  
+
 </template>
 
 <script>
@@ -309,7 +309,7 @@
     import VisualSettings from "@/components/VisualSettings.vue"
     import ThreeDotMenu from "@/components/ThreeDotMenu.vue"
     import TeamList from "@/components/TeamList.vue"
-    
+
   export default {
     name: 'app',
     props: {
@@ -368,11 +368,11 @@
     changeMode() {
         this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     },
-   
+
     },
     events: {
-        
-       
+
+
     }
   }
 
@@ -387,5 +387,5 @@
   .small-container {
     max-width: 99%;
   }
-    
+
 </style>
