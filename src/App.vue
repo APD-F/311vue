@@ -123,23 +123,13 @@
     <div v-if="activePage == 2">
       <v-container>
     <v-row>
-    <v-col :cols="4">
+    <!--<v-col :cols="4">
     <v-card hover tile elevation="2">
         <div class="ma-5">
-            <v-card-title>Backlog<v-layout align-end justify-end><v-btn outlined small color="success"><b>Add Task</b></v-btn></v-layout></v-card-title>
+            <v-card-title>Backlog</v-card-title>
             <v-card-text>
-              <v-card color="blue" outlined class="mb-2">
-            <v-card-title>Task1<v-spacer></v-spacer><three-dot-menu></three-dot-menu></v-card-title>
-            <v-card-text>Such an important task</v-card-text>
-            <div class="text-center"><v-chip class="ma-2" color="white" outlined>
-                <v-icon left>mdi-account</v-icon> Person 1</v-chip></div>
-        </v-card>
-                <v-card color="red" outlined class="mb-2">
-            <v-card-title >Task2<v-spacer></v-spacer><three-dot-menu></three-dot-menu></v-card-title>
-            <v-card-text>Such an important task</v-card-text>
-            <div class="text-center"><v-chip class="ma-2" color="white" outlined>
-                <v-icon left>mdi-account</v-icon> Person 2</v-chip></div>
-        </v-card>
+                <tasks v-bind:tasks="tasks" v-on:del-task="deleteTask"/>
+                <AddTask v-on:add-task="addTask"/>
             </v-card-text>
         </div>
     </v-card>
@@ -180,19 +170,21 @@
             </v-card-text>
         </div>
     </v-card>
+    </v-col>-->
+    <v-col :cols="12">
+    <KanbanBoard/>
     </v-col>
     </v-row>
     <v-row>
-        <v-col :cols="6">
-            <v-card>
-                <v-card-title>Announcments</v-card-title>
-            </v-card>
+        <v-col :cols="12">
+                <Announcement/>
         </v-col>
-        <v-col :cols="6">
+        <!--<v-col :cols="6">
             <v-card>
                 <v-card-title>Progress</v-card-title>
             </v-card>
-        </v-col>
+            
+        </v-col>-->
     </v-row>
     </v-container>
     </div> 
@@ -307,8 +299,12 @@
     import PersonalNotes from "@/components/PersonalNotes.vue"
     import SettingsProject from "@/components/SettingsProject.vue"
     import VisualSettings from "@/components/VisualSettings.vue"
-    import ThreeDotMenu from "@/components/ThreeDotMenu.vue"
+    //import ThreeDotMenu from "@/components/ThreeDotMenu.vue"
     import TeamList from "@/components/TeamList.vue"
+    //import Tasks from "@/components/Tasks.vue"
+    //import AddTask from "@/components/AddTask.vue"
+    import KanbanBoard from "@/components/KanbanBoard.vue"
+    import Announcement from "@/components/announcement.vue"
     
   export default {
     name: 'app',
@@ -322,8 +318,12 @@
         PersonalNotes,
         SettingsProject,
         VisualSettings,
-        ThreeDotMenu,
+        //ThreeDotMenu,
         TeamList,
+        //Tasks,
+        //AddTask,
+        KanbanBoard,
+        Announcement,
     },
     data(){
       return {
@@ -336,8 +336,29 @@
         drawer: null,
         activePage: 2,
         projectColor: "",
+        tasks: [
+          {
+            id: 1,
+            title: "Task1",
+            description: "A very Important task1",
+            person: "Person1"
+          },
+          {
+            id: 2,
+            title: "Task2",
+            description: "A very Important task2",
+            person: "Person2"
+          },
+          {
+            id: 3,
+            title: "Task3",
+            description: "A very Important task3",
+            person: "Person3"
+          }
+        ]
       }
     },
+  
     created () {
       this.$vuetify.theme.dark = false
     },
@@ -368,11 +389,12 @@
     changeMode() {
         this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     },
-   
+    deleteTask(id){
+      this.tasks = this.tasks.filter(task => task.id !== id);
+    }
     },
-    events: {
-        
-       
+    addTask(newTask) {
+      this.task.push(newTask);
     }
   }
 
