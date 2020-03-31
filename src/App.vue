@@ -43,7 +43,7 @@
 
       <template v-slot:append>
         <div class="pa-2 text-center">
-          <v-btn rounded color="red" dark >Logout</v-btn>
+          <v-btn rounded color="red" dark @click="changePage(5)">Logout</v-btn>
         </div>
       </template>
     </v-navigation-drawer>
@@ -290,6 +290,43 @@
     </div>
   </v-content>
 
+  <!--                          The login Page                                -->
+  <div v-if="activePage == 5">
+  <v-container>
+  <v-row>
+  <v-col>
+  <v-card hover tile elevation="2">
+      <div class="ma-10">
+          <v-card-title>Login</v-card-title>
+          <v-card-text>
+              username
+              <v-text-field
+                v-model="username"
+                :rules="[rules.required]"
+                required
+              ></v-text-field>
+
+              password
+              <v-text-field
+                v-model="password"
+                :rules="[rules.required]"
+                :type="false ? 'text' : 'password'"
+                required
+              ></v-text-field>
+
+              <v-btn small @click="changePage(2)">login</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn  small>register</v-btn>
+          </v-card-text>
+      </div>
+  </v-card>
+  </v-col>
+  <v-col>
+  </v-col>
+  </v-row>
+  </v-container>
+  </div>
+
     <!--                                    End of Content                              -->
 
   <v-footer app>
@@ -336,7 +373,11 @@
         drawer: null,
         activePage: 2,
         projectColor: "",
+        rules:{
+          required: value => !!value || 'Required.',
+        },
       }
+
     },
     created () {
       this.$vuetify.theme.dark = false
@@ -368,6 +409,7 @@
     changeMode() {
         this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     },
+
 
     },
     events: {
