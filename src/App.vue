@@ -316,7 +316,65 @@
 
               <v-btn small @click="changePage(2)">login</v-btn>
               <v-spacer></v-spacer>
-              <v-btn  small>register</v-btn>
+              <v-btn  small @click="changePage(6)">register</v-btn>
+          </v-card-text>
+      </div>
+  </v-card>
+  </v-col>
+  <v-col>
+  </v-col>
+  </v-row>
+  </v-container>
+  </div>
+
+  <!--                          The register Page                                -->
+  <div v-if="activePage == 6">
+  <v-container>
+  <v-row>
+  <v-col>
+  <v-card hover tile elevation="2">
+      <div class="ma-10">
+          <v-card-title>Register</v-card-title>
+          <v-card-text>
+              username
+              <v-text-field
+                v-model="username"
+                :rules="[rules.required]"
+                required
+              ></v-text-field>
+
+              password
+              <v-text-field
+                v-model="password"
+                :rules="[rules.required]"
+                :type="false ? 'text' : 'password'"
+                required
+              ></v-text-field>
+
+              comfirmed password
+              <v-text-field
+                v-model="cpassword"
+                :rules="[rules.required]"
+                :type="false ? 'text' : 'password'"
+                required
+              ></v-text-field>
+
+              email
+              <v-text-field
+                v-model="email"
+                :rules="[rules.required]"
+                required
+              ></v-text-field>
+
+              name
+              <v-text-field
+                v-model="name"
+                :rules="[rules.required]"
+                required
+              ></v-text-field>
+
+              <v-btn small @click="changePage(5)">register</v-btn>
+
           </v-card-text>
       </div>
   </v-card>
