@@ -362,7 +362,7 @@
               email
               <v-text-field
                 v-model="email"
-                :rules="[rules.required]"
+                :rules='emailRules'
                 required
               ></v-text-field>
 
@@ -434,6 +434,10 @@
         rules:{
           required: value => !!value || 'Required.',
         },
+        emailRules: [
+          v => !!v || "E-mail is required",
+          v => /.+@.+/.test(v) || "E-mail must be valid"
+        ],
       }
 
     },
