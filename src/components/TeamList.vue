@@ -24,6 +24,7 @@
           <v-list-item-content>
             <v-list-item-title v-text="item.text"></v-list-item-title>
           </v-list-item-content>
+          <v-btn icon @click="deleteUser()"><v-icon>remove</v-icon></v-btn>
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -38,8 +39,13 @@
     }),
     method: {
       addUser(){
+
         this.submituser()
-      }
+      },
+
+   //deleteUser(items){
+//
+  //    }
     },
   }
 </script>

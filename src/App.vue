@@ -77,6 +77,7 @@
         >
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
+        <v-btn icon @click="addP()"><v-icon>+</v-icon></v-btn>
       </v-list>
     </v-menu>
   </div>
@@ -298,6 +299,9 @@
           <v-card-text>
               username
               <v-text-field
+                ref="username"
+                label= "username"
+                name= "username"
                 v-model="username"
                 :rules="[rules.required]"
                 required
@@ -305,6 +309,9 @@
 
               password
               <v-text-field
+              ref="password"
+              label= "password"
+              name= "password"
                 v-model="password"
                 :rules="[rules.required]"
                 :type="false ? 'text' : 'password'"
@@ -431,10 +438,7 @@
     },
     data(){
       return {
-        items: [
-        { title: 'Project CSCI' },
-        { title: 'Project ITAS' },
-        ],
+        items: this.fetchItems(),
         activeProject: "",
         meetings: [
         ],
@@ -508,12 +512,14 @@
     changeMode() {
         this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     },
+
     loginBtn(){
       if(this.valid==true){
-        this.logInMethod();
+        this.logInMethod(this.password, this.username);
         this.changePage(2);
       }
     },
+
     registerBtn(){
       if(this.registerValid==true){
         this.registerMethod();
@@ -527,6 +533,11 @@
     addTask(newTask) {
       this.tasks.push(newTask); // changed task to tasks as variable is called tasks
       this.addTask(); //no argument needed as task on possition 0 is going to be submitted
+    },
+
+    //add project for drop down top right
+    addP(){
+
     },
 
 
@@ -622,6 +633,7 @@
 
       // meetings !!!!!!!!!!!!!!!!!!!
 
+      //used
       submitmeeting() {
       this.$http.post('./api/meetings/addMeeting.php', this.meetings[0])
           .then(response => {
@@ -630,6 +642,7 @@
               console.log(error);
           });
     },
+
       submitchangemeeting(aMeeting) {
       this.$http.put('./api/meetings/editMeeting', aMeeting)
           .then(response => {
@@ -686,6 +699,7 @@
     //maybe safe tasks with projects
 
     //here all tasks will be fetched into an array of objects
+    //used
     fetchItems() {
       this.$http.get('./api/project/getProjects.php')
         .then(response => {
@@ -714,8 +728,8 @@
           });
       },
 
-      logInMethod() {
-        this.$http.put('./api/user/login.php')
+      logInMethod(psw,usern) {
+        this.$http.put('./api/user/login.php',{params:{password:psw , username:usern}})
         .then(response => {
             console.log(response);
           }, error => {
