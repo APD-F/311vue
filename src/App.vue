@@ -172,6 +172,8 @@
     </v-card>
     </v-col>-->
     <v-col :cols="12">
+      <button @click="changeMode1()">Click me</button>
+      <p>{{users}}</p>
     <KanbanBoard/>
     </v-col>
     </v-row>
@@ -331,11 +333,14 @@
         { title: 'Project CSCI' },
         { title: 'Project ITAS' },
         ],
+        activeProject: "",
         meetings: [
         ],
         drawer: null,
         activePage: 2,
         projectColor: "",
+        //users needs to be inserted dynamically in the settingspage     A,S
+        users: [],
         tasks: [
           {
             id: 1,
@@ -372,15 +377,19 @@
         const newMeeting = { ...meeting, id };
 
         this.meetings = [...this.meetings, newMeeting];
+        this.submitmeeting(); //maybe change the methode so the latest gets submitted or the latest meeting is on position 0  A,S
       },
       deleteMeeting(id){
         this.meetings = this.meetings.filter(
-                meeting => meeting.id !== id
+                meeting => meeting.id !== id     
         )
+        this.deleteMeeting(id); //not sure if position is right
       },
       editMeeting(id, updatedMeeting){
         this.meetings = this.meetings.map(meeting =>
              meeting.id === id ? updatedMeeting : meeting)
+             this.submitchangemeeting(id); //not sure if position is right
+
       },
     changePage(a) {
         this.activePage = a;
@@ -391,11 +400,198 @@
     },
     deleteTask(id){
       this.tasks = this.tasks.filter(task => task.id !== id);
-    }
+      this.deleteTask(id);
     },
     addTask(newTask) {
-      this.task.push(newTask);
-    }
+      this.tasks.push(newTask); // changed task to tasks as variable is called tasks
+      this.addTask(); //no argument needed as task on possition 0 is going to be submitted
+    },
+    
+
+    // connecting to backend methods !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // each task is going to be subbmitted on its own as an object
+    //  {emulateJSON: true} may be needed as thired argument
+    //  assumtion taken that only the latest task needs to be submitted and the latest will be on position 0
+    submittask() {
+      this.$http.post('<insert filepath here>', this.tasks[0])
+          .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+    },
+    //important fetch all tasks and then select displayed projects through activeProjects
+    //maybe safe tasks with projects
+
+    //here all tasks will be fetched into an array of objects
+    fetchTasks() {
+      this.$http.get('<insert filepath here>')
+        .then(response => {
+          console.log(response);
+          return response.json();
+        })
+        .then(data => {
+          const resultArray = [];
+          for (let key in data){
+            resultArray.push(data[key]);
+          }
+          resultArray.reverse();
+          this.tasks = resultArray;
+          
+        });
+        },
+      // may have a error in the second argument
+      //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
+
+      deleteTask(aTask) {
+        this.$http.delete('/someUrl', {params: {taskToDelete: aTask}})
+        .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+      },
+
+
+      //users !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+      submituser() {
+      this.$http.post('<insert filepath here>', this.users[0])
+          .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+    },
+    //important fetch all tasks and then select displayed projects through activeProjects
+    //maybe safe tasks with projects
+
+    //here all tasks will be fetched into an array of objects
+    fetchUser() {
+      this.$http.get('<insert filepath here>')
+        .then(response => {
+          console.log(response);
+          return response.json();
+        })
+        .then(data => {
+          const resultArray = [];
+          for (let key in data){
+            resultArray.push(data[key]);
+          }
+          resultArray.reverse();
+          this.users = resultArray;
+          
+        });
+        },
+      // may have a error in the second argument
+      //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
+
+      deleteUser(aUser) {
+        this.$http.delete('/someUrl', {params: {taskToDelete: aUser}})
+        .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+      },
+
+
+      // meetings !!!!!!!!!!!!!!!!!!!
+
+      submitmeeting() {
+      this.$http.post('<insert filepath here>', this.meetings[0])
+          .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+    },
+      submitchangemeeting(aMeeting) {
+      this.$http.put('<insert filepath here>', aMeeting)
+          .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+    },
+    //important fetch all tasks and then select displayed projects through activeProjects
+    //maybe safe tasks with projects
+
+    //here all tasks will be fetched into an array of objects
+    fetchMeeting() {
+      this.$http.get('<insert filepath here>')
+        .then(response => {
+          console.log(response);
+          return response.json();
+        })
+        .then(data => {
+          const resultArray = [];
+          for (let key in data){
+            resultArray.push(data[key]);
+          }
+          resultArray.reverse();
+          this.meetings = resultArray;
+          
+        });
+        },
+      // may have a error in the second argument
+      //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
+
+      deleteMeeting(aMeeting) {
+        this.$http.delete('/someUrl', {params: {taskToDelete: aMeeting}})
+        .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+      },
+
+
+      // projects !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+      submittask() {
+      this.$http.post('<insert filepath here>', this.items[0])
+          .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+    },
+    //important fetch all tasks and then select displayed projects through activeProjects
+    //maybe safe tasks with projects
+
+    //here all tasks will be fetched into an array of objects
+    fetchItems() {
+      this.$http.get('<insert filepath here>')
+        .then(response => {
+          console.log(response);
+          return response.json();
+        })
+        .then(data => {
+          const resultArray = [];
+          for (let key in data){
+            resultArray.push(data[key]);
+          }
+          resultArray.reverse();
+          this.items = resultArray;
+          
+        });
+        },
+      // may have a error in the second argument
+      //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
+
+      deleteItem(aItem) {
+        this.$http.delete('/someUrl', {params: {taskToDelete: aItem}})
+        .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+      },
+
+
+
+  }
   }
 
 </script>
