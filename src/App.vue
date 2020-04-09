@@ -468,7 +468,7 @@
 
     //here all tasks will be fetched into an array of objects
     fetchUser() {
-      this.$http.get('./api/project/fetchUsers.php')
+      this.$http.get('./api/project/fetchUsers.php', {params: {projectAtm: this.activeProject}})
         .then(response => {
           console.log(response);
           return response.json();
