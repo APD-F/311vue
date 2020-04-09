@@ -185,7 +185,7 @@
             <v-card>
                 <v-card-title>Progress</v-card-title>
             </v-card>
-            
+
         </v-col>-->
     </v-row>
     </v-container>
@@ -286,6 +286,7 @@
 
   <!--                          The login Page                                -->
   <div v-if="activePage == 5">
+  <v-form v-model="valid">
   <v-container>
   <v-row>
   <v-col>
@@ -308,7 +309,7 @@
                 required
               ></v-text-field>
 
-              <v-btn small @click="changePage(2)">login</v-btn>
+              <v-btn small @click="loginBtn()">login</v-btn>
               <v-spacer></v-spacer>
               <v-btn  small @click="changePage(6)">register</v-btn>
           </v-card-text>
@@ -319,16 +320,19 @@
   </v-col>
   </v-row>
   </v-container>
+</v-form>
   </div>
 
   <!--                          The register Page                                -->
   <div v-if="activePage == 6">
+  <v-form v-model="registerValid">
   <v-container>
   <v-row>
   <v-col>
   <v-card hover tile elevation="2">
       <div class="ma-10">
           <v-card-title>Register</v-card-title>
+
           <v-card-text>
               username
               <v-text-field
@@ -367,7 +371,7 @@
                 required
               ></v-text-field>
 
-              <v-btn small @click="changePage(5)">register</v-btn>
+              <v-btn small @click="registerBtn()">register</v-btn>
 
           </v-card-text>
       </div>
@@ -377,6 +381,7 @@
   </v-col>
   </v-row>
   </v-container>
+  </v-form>
   </div>
 
     <!--                                    End of Content                              -->
@@ -402,7 +407,7 @@
     //import AddTask from "@/components/AddTask.vue"
     import KanbanBoard from "@/components/KanbanBoard.vue"
     import Announcement from "@/components/announcement.vue"
-    
+
   export default {
     name: 'app',
     props: {
@@ -466,7 +471,7 @@
       }
 
     },
-  
+
     created () {
       this.$vuetify.theme.dark = false
     },
@@ -484,7 +489,7 @@
       },
       deleteMeeting(id){
         this.meetings = this.meetings.filter(
-                meeting => meeting.id !== id     
+                meeting => meeting.id !== id
         )
         this.deleteMeeting(id); //not sure if position is right
       },
@@ -501,15 +506,27 @@
     changeMode() {
         this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     },
+    loginBtn(){
+      if(this.valid==true){
+        this.logInMethod();
+        this.changePage(2);
+      }
+    },
+    registerBtn(){
+      if(this.registerValid==true){
+        this.registerMethod();
+        this.changePage(5);
+      }
+    },
     deleteTask(id){
-      this.tasks = this.tasks.filter(task => task.id !== id);
+     this.tasks = this.tasks.filter(task => task.id !== id);
       this.deleteTask(id);
     },
     addTask(newTask) {
       this.tasks.push(newTask); // changed task to tasks as variable is called tasks
       this.addTask(); //no argument needed as task on possition 0 is going to be submitted
     },
-    
+
 
     // connecting to backend methods !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // each task is going to be subbmitted on its own as an object
@@ -540,13 +557,15 @@
           }
           resultArray.reverse();
           this.tasks = resultArray;
-          
+
         });
         },
       // may have a error in the second argument
       //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
 
-      deleteTask(aTask) {
+      deleteTaskbe(aTask) {
+        //this.tasks = this.tasks.filter(task => task.id !== id);
+        //this.deleteTask(id);
         this.$http.delete('./api/tasks/deleteTask.php', {params: {taskToDelete: aTask}})
         .then(response => {
             console.log(response);
@@ -583,7 +602,7 @@
           }
           resultArray.reverse();
           this.users = resultArray;
-          
+
         });
         },
       // may have a error in the second argument
@@ -634,14 +653,15 @@
           }
           resultArray.reverse();
           this.meetings = resultArray;
-          
+
         });
         },
       // may have a error in the second argument
       //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
 
-      deleteMeeting(aMeeting) {
+      deleteMeetingbe(aMeeting) {
         this.$http.delete('/api/meetings/deleteMeeting.php', {params: {taskToDelete: aMeeting}})
+
         .then(response => {
             console.log(response);
           }, error => {
@@ -677,7 +697,7 @@
           }
           resultArray.reverse();
           this.items = resultArray;
-          
+
         });
         },
       // may have a error in the second argument
@@ -692,7 +712,23 @@
           });
       },
 
+      logInMethod() {
+        this.$http.put('./api/user/login.php')
+        .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+      },
 
+      registerMethod() {
+        this.$http.post('./api/user/register.php')
+        .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+      },
 
   }
   }

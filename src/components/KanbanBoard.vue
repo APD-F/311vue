@@ -8,7 +8,7 @@
 
 
 
-                
+
 
 
 
@@ -33,34 +33,34 @@
                     </v-text-field>
                     <v-text-field v-model="person" placeholder="Person">
                     </v-text-field>
-                    <v-btn @click="add">Add</v-btn>
+                    <v-btn @click="add; submittask">Add</v-btn>
                     <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
             </v-form>
         </v-card-text>
       </v-card>
-    </v-dialog> 
+    </v-dialog>
                     </v-card-title>
                     <v-card-text>
             <draggable class="list-group" :list="arrBacklog" group="tasks">
                 <div class="list-group-item" v-for="element in arrBacklog" :key="element.name">
                     <!--{{element.name}}-->
-                    
+
                         <v-card color="grey" outlined class="mb-2">
                         <v-card-title >{{element.title}}<v-spacer></v-spacer>
-                        
-                                
-                        
+
+
+
                         </v-card-title>
                         <v-card-text>{{element.description}}</v-card-text>
                         <div class="text-center"><v-chip class="ma-2" color="white" outlined>
                         <v-icon left>mdi-account</v-icon> {{element.person}}</v-chip></div>
                         </v-card>
-                    
+
                     </div>
             </draggable>
             </v-card-text>
                     </div>
-                    </v-card>    
+                    </v-card>
         </v-col>
         <v-col :cols="4">
             <v-card hover tile elevation="2" color="yellow">
@@ -70,19 +70,19 @@
             <draggable class="list-group" :list="arrInProgress" group="tasks">
                 <div class="list-group-item" v-for="element in arrInProgress" :key="element.name">
                     <!--{{element.name}}-->
-                    
+
                         <v-card color="grey" outlined class="mb-2">
                         <v-card-title >{{element.title}}<v-spacer></v-spacer><three-dot-menu></three-dot-menu></v-card-title>
                         <v-card-text>{{element.description}}</v-card-text>
                         <div class="text-center"><v-chip class="ma-2" color="white" outlined>
                         <v-icon left>mdi-account</v-icon> {{element.person}}</v-chip></div>
                         </v-card>
-                    
+
                     </div>
             </draggable>
             </v-card-text>
                     </div>
-                    </v-card>    
+                    </v-card>
         </v-col>
         <v-col :cols="4">
             <v-card hover tile elevation="2" color="green">
@@ -92,11 +92,11 @@
             <draggable class="list-group" :list="arrDone" group="tasks">
                 <div class="list-group-item" v-for="element in arrDone" :key="element.name">
                     <!--{{element.name}}-->
-                    
+
                         <v-card color="grey" outlined class="mb-2">
                         <v-card-title >{{element.title}}<v-spacer></v-spacer>
-                        
-                        
+
+
                                     <v-menu right offset-x>
                                 <template v-slot:activator="{ on }">
                                 <v-spacer></v-spacer>
@@ -121,31 +121,31 @@
                                 </v-list-item>
                                 </v-list>
                                 </v-menu>
-                        
-                        
-                        
+
+
+
                         </v-card-title>
                         <v-card-text>{{element.description}}</v-card-text>
                         <div class="text-center"><v-chip class="ma-2" color="white" outlined>
                         <v-icon left>mdi-account</v-icon> {{element.person}}</v-chip></div>
                         </v-card>
-                    
+
                     </div>
             </draggable>
             </v-card-text>
 
 
 
-            
+
 
             </div>
             </v-card>
         </v-col>
     </v-row>
     </v-container>
-        
-            
-        
+
+
+
     </div>
 </template>
 
@@ -196,6 +196,7 @@ export default {
             this.person="";
             this.dialog = false;
         },
+
         deleteAnn(element) {
             this.arrDone.splice(element,1)
     }
