@@ -110,7 +110,7 @@
     <meetings-table
             :meetings="meetings"
             @delete:meeting="deleteMeeting"
-            @edit:employee="editEmployee"/> <!--work in progress-->
+            @edit:employee="editMeeting"/> <!--work in progress-->
             </v-card-text>
         </div>
     </v-card>
@@ -413,7 +413,7 @@
     //  {emulateJSON: true} may be needed as thired argument
     //  assumtion taken that only the latest task needs to be submitted and the latest will be on position 0
     submittask() {
-      this.$http.post('<insert filepath here>', this.tasks[0])
+      this.$http.post('./api/tasks/createTask.php', this.tasks[0])
           .then(response => {
             console.log(response);
           }, error => {
@@ -425,7 +425,7 @@
 
     //here all tasks will be fetched into an array of objects
     fetchTasks() {
-      this.$http.get('<insert filepath here>')
+      this.$http.get('./api/tasks/getTasks.php')
         .then(response => {
           console.log(response);
           return response.json();
@@ -444,7 +444,7 @@
       //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
 
       deleteTask(aTask) {
-        this.$http.delete('/someUrl', {params: {taskToDelete: aTask}})
+        this.$http.delete('./api/tasks/deleteTask.php', {params: {taskToDelete: aTask}})
         .then(response => {
             console.log(response);
           }, error => {
@@ -456,7 +456,7 @@
       //users !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
       submituser() {
-      this.$http.post('<insert filepath here>', this.users[0])
+      this.$http.post('./api/project/addUser.php', this.users[0])
           .then(response => {
             console.log(response);
           }, error => {
@@ -468,7 +468,7 @@
 
     //here all tasks will be fetched into an array of objects
     fetchUser() {
-      this.$http.get('<insert filepath here>')
+      this.$http.get('./api/project/fetchUsers.php')
         .then(response => {
           console.log(response);
           return response.json();
@@ -487,7 +487,7 @@
       //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
 
       deleteUser(aUser) {
-        this.$http.delete('/someUrl', {params: {taskToDelete: aUser}})
+        this.$http.delete('/api/user/deleteUser.php', {params: {taskToDelete: aUser}})
         .then(response => {
             console.log(response);
           }, error => {
@@ -499,7 +499,7 @@
       // meetings !!!!!!!!!!!!!!!!!!!
 
       submitmeeting() {
-      this.$http.post('<insert filepath here>', this.meetings[0])
+      this.$http.post('./api/meetings/addMeeting.php', this.meetings[0])
           .then(response => {
             console.log(response);
           }, error => {
@@ -507,7 +507,7 @@
           });
     },
       submitchangemeeting(aMeeting) {
-      this.$http.put('<insert filepath here>', aMeeting)
+      this.$http.put('./api/meetings/editMeeting', aMeeting)
           .then(response => {
             console.log(response);
           }, error => {
@@ -519,7 +519,7 @@
 
     //here all tasks will be fetched into an array of objects
     fetchMeeting() {
-      this.$http.get('<insert filepath here>')
+      this.$http.get('./api/meetings/getMeetings.php')
         .then(response => {
           console.log(response);
           return response.json();
@@ -538,7 +538,7 @@
       //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
 
       deleteMeeting(aMeeting) {
-        this.$http.delete('/someUrl', {params: {taskToDelete: aMeeting}})
+        this.$http.delete('/api/meetings/deleteMeeting.php', {params: {taskToDelete: aMeeting}})
         .then(response => {
             console.log(response);
           }, error => {
@@ -549,8 +549,8 @@
 
       // projects !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-      submittask() {
-      this.$http.post('<insert filepath here>', this.items[0])
+      submitproject() {
+      this.$http.post('./api/project/createProject.php', this.items[0])
           .then(response => {
             console.log(response);
           }, error => {
@@ -562,7 +562,7 @@
 
     //here all tasks will be fetched into an array of objects
     fetchItems() {
-      this.$http.get('<insert filepath here>')
+      this.$http.get('./api/project/getProjects.php')
         .then(response => {
           console.log(response);
           return response.json();
@@ -581,7 +581,7 @@
       //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
 
       deleteItem(aItem) {
-        this.$http.delete('/someUrl', {params: {taskToDelete: aItem}})
+        this.$http.delete('./api/project/deleteProject.php', {params: {taskToDelete: aItem}})
         .then(response => {
             console.log(response);
           }, error => {
