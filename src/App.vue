@@ -1,6 +1,6 @@
 <template>
 <v-app>
-  
+
   <v-navigation-drawer
       v-model="drawer"
       app
@@ -40,12 +40,12 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-        
+
       <template v-slot:append>
         <div class="pa-2 text-center">
-          <v-btn rounded color="red" dark >Logout</v-btn>
+          <v-btn rounded color="red" dark @click="changePage(5)">Logout</v-btn>
         </div>
-      </template>  
+      </template>
     </v-navigation-drawer>
 
     <v-app-bar
@@ -85,9 +85,9 @@
   <!-- Sizes your content based upon application components -->
   <v-content>
     <div id="app" class="small-container">
-      
+
     <!--                            The Navigation                    -->
-    
+
     <!--                          The Meetings Page                                -->
     <div v-if="activePage == 1">
     <v-container>
@@ -118,7 +118,7 @@
     </v-row>
     </v-container>
     </div>
-    
+
     <!--                               The Main Page                                 -->
     <div v-if="activePage == 2">
       <v-container>
@@ -151,7 +151,7 @@
             <div class="text-center"><v-chip class="ma-2" color="white" outlined>
                 <v-icon left>mdi-account</v-icon> Person 1</v-chip></div>
         </v-card>
-                
+
             </v-card-text>
         </div>
     </v-card>
@@ -189,8 +189,8 @@
         </v-col>-->
     </v-row>
     </v-container>
-    </div> 
-        
+    </div>
+
     <!--                              The Personal Page                                -->
     <div v-if="activePage == 3">
       <v-container>
@@ -209,7 +209,7 @@
                 </personal-notes>
                 </v-card>
                 </div>
-                      
+
                 <div>
                 <v-card hover tile elevation="2">
                 <v-card-title>CSCI375</v-card-title>
@@ -219,7 +219,7 @@
         </div>
     </v-card>
     </v-col>
-    
+
     <v-col>
     <v-card hover tile elevation="2">
         <div>
@@ -235,8 +235,8 @@
     </v-col>
     </v-row>
     </v-container>
-    </div> 
-        
+    </div>
+
     <!--                                  Settings                                  -->
     <div v-if="activePage == 4">
       <v-container>
@@ -279,18 +279,113 @@
     </v-col>
     </v-row>
     </v-container>
-    </div> 
-      
+    </div>
+
     </div>
   </v-content>
-    
+
+  <!--                          The login Page                                -->
+  <div v-if="activePage == 5">
+  <v-container>
+  <v-row>
+  <v-col>
+  <v-card hover tile elevation="2">
+      <div class="ma-10">
+          <v-card-title>Login</v-card-title>
+          <v-card-text>
+              username
+              <v-text-field
+                v-model="username"
+                :rules="[rules.required]"
+                required
+              ></v-text-field>
+
+              password
+              <v-text-field
+                v-model="password"
+                :rules="[rules.required]"
+                :type="false ? 'text' : 'password'"
+                required
+              ></v-text-field>
+
+              <v-btn small @click="changePage(2)">login</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn  small @click="changePage(6)">register</v-btn>
+          </v-card-text>
+      </div>
+  </v-card>
+  </v-col>
+  <v-col>
+  </v-col>
+  </v-row>
+  </v-container>
+  </div>
+
+  <!--                          The register Page                                -->
+  <div v-if="activePage == 6">
+  <v-container>
+  <v-row>
+  <v-col>
+  <v-card hover tile elevation="2">
+      <div class="ma-10">
+          <v-card-title>Register</v-card-title>
+          <v-card-text>
+              username
+              <v-text-field
+                v-model="username"
+                :rules="[rules.required]"
+                required
+              ></v-text-field>
+
+              password
+              <v-text-field
+                v-model="password"
+                :rules="[rules.required]"
+                :type="false ? 'text' : 'password'"
+                required
+              ></v-text-field>
+
+              comfirmed password
+              <v-text-field
+                v-model="cpassword"
+                :rules="[rules.required]"
+                :type="false ? 'text' : 'password'"
+                required
+              ></v-text-field>
+
+              email
+              <v-text-field
+                v-model="email"
+                :rules='emailRules'
+                required
+              ></v-text-field>
+
+              name
+              <v-text-field
+                v-model="name"
+                :rules="[rules.required]"
+                required
+              ></v-text-field>
+
+              <v-btn small @click="changePage(5)">register</v-btn>
+
+          </v-card-text>
+      </div>
+  </v-card>
+  </v-col>
+  <v-col>
+  </v-col>
+  </v-row>
+  </v-container>
+  </div>
+
     <!--                                    End of Content                              -->
-    
+
   <v-footer app>
     Credit: Best Group
   </v-footer>
 </v-app>
-  
+
 </template>
 
 <script>
@@ -339,6 +434,13 @@
         drawer: null,
         activePage: 2,
         projectColor: "",
+        rules:{
+          required: value => !!value || 'Required.',
+        },
+        emailRules: [
+          v => !!v || "E-mail is required",
+          v => /.+@.+/.test(v) || "E-mail must be valid"
+        ],
         //users needs to be inserted dynamically in the settingspage     A,S
         users: [],
         tasks: [
@@ -362,6 +464,7 @@
           }
         ]
       }
+
     },
   
     created () {
@@ -605,5 +708,5 @@
   .small-container {
     max-width: 99%;
   }
-    
+
 </style>
