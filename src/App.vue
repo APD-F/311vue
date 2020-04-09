@@ -43,7 +43,7 @@
 
       <template v-slot:append>
         <div class="pa-2 text-center">
-          <v-btn rounded color="red" dark @click="changePage(5)">Logout</v-btn>
+          <v-btn rounded color="red" dark @click="changePage(5);logOutMethod">Logout</v-btn>
         </div>
       </template>
     </v-navigation-drawer>
@@ -286,6 +286,8 @@
 
   <!--                          The login Page                                -->
   <div v-if="activePage == 5">
+
+
   <v-form v-model="valid">
   <v-container>
   <v-row>
@@ -723,6 +725,15 @@
 
       registerMethod() {
         this.$http.post('./api/user/register.php')
+        .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
+      },
+
+      logOutMethod() {
+        this.$http.delete('./api/user/logout.php')
         .then(response => {
             console.log(response);
           }, error => {

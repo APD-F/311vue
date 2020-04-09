@@ -31,7 +31,7 @@
                 ✅ Meeting successfully added
             </p>
 
-            <button>Add Meeting</button>
+            <button onclidk="submitmeeting()">Add Meeting</button>
         </form>
     </div>
 </template>
