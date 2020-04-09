@@ -172,8 +172,6 @@
     </v-card>
     </v-col>-->
     <v-col :cols="12">
-      <button @click="changeMode1()">Click me</button>
-      <p>{{users}}</p>
     <KanbanBoard/>
     </v-col>
     </v-row>

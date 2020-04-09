@@ -193,16 +193,34 @@ export default {
     },
     methods:{
         add() {
-            this.arrBacklog.push({id: this.arrBacklog.length+this.arrInProgress.length+this.arrDone.length+1,title: this.title, description: this.description, person:this.person})
+            const newTask = {
+                id: this.arrBacklog.length+this.arrInProgress.length+this.arrDone.length+1,
+                title: this.title,
+                description: this.description,
+                person: this.person
+            }
+            this.arrBacklog = [...this.arrBacklog, newTask];
+            this.submittask();
+            //this.arrBacklog.push({id: this.arrBacklog.length+this.arrInProgress.length+this.arrDone.length+1,title: this.title, description: this.description, person:this.person})
             this.title="";
             this.description="";
             this.person="";
             this.dialog = false;
+            
         },
+        
         //deleteAnn(element) {
             //this.arrDone.splice(element,1)
             deleteTask(id){
                 this.arrDone = this.arrDone.filter(element => element.id != id);
+    },
+    submittask() {
+      this.$http.post('./api/tasks/createTask.php', this.tasks[0])
+          .then(response => {
+            console.log(response);
+          }, error => {
+              console.log(error);
+          });
     }
     }
 }
