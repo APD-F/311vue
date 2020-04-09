@@ -546,7 +546,7 @@
       // may have a error in the second argument
       //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
 
-      deleteTask(aTask) {
+      deleteTask1(aTask) {
         this.$http.delete('./api/tasks/deleteTask.php', {params: {taskToDelete: aTask}})
         .then(response => {
             console.log(response);
@@ -640,7 +640,7 @@
       // may have a error in the second argument
       //if you need headers they come after params look at https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
 
-      deleteMeeting(aMeeting) {
+      deleteMeeting1(aMeeting) {
         this.$http.delete('/api/meetings/deleteMeeting.php', {params: {taskToDelete: aMeeting}})
         .then(response => {
             console.log(response);

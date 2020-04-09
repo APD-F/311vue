@@ -116,7 +116,7 @@
                                 @click="0"
                                 >
                                 <v-list-item-title>
-                        <v-btn @click="deleteAnn(element)">del</v-btn>
+                        <v-btn @click="deleteTask(element.id)">del</v-btn>
                                 </v-list-item-title>
                                 </v-list-item>
                                 </v-list>
@@ -161,16 +161,19 @@ export default {
             person: "",
             arrBacklog: [
                 {
+                    id:1,
                     title: "Task1",
                     description: "A very Important task1",
                     person: "Person1"
                 },
                 {
+                    id:2,
                     title: "Task2",
                     description: "A very Important task2",
                     person: "Person2"
                 },
                 {
+                    id:3,
                     title: "Task3",
                     description: "A very Important task3",
                     person: "Person3"
@@ -190,14 +193,16 @@ export default {
     },
     methods:{
         add() {
-            this.arrBacklog.push({title: this.title, description: this.description, person:this.person})
+            this.arrBacklog.push({id: this.arrBacklog.length+this.arrInProgress.length+this.arrDone.length+1,title: this.title, description: this.description, person:this.person})
             this.title="";
             this.description="";
             this.person="";
             this.dialog = false;
         },
-        deleteAnn(element) {
-            this.arrDone.splice(element,1)
+        //deleteAnn(element) {
+            //this.arrDone.splice(element,1)
+            deleteTask(id){
+                this.arrDone = this.arrDone.filter(element => element.id != id);
     }
     }
 }

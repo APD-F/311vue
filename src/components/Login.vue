@@ -13,7 +13,6 @@
         <lable>password</lable>
         <input
           v-model="password"
-          name="username"
           :rules="[rules.required]"
           :type="show ? 'text': ' '"
           name="password"

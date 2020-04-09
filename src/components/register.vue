@@ -73,8 +73,9 @@
               sameWithP: value=> value!=password.value || 'not matching password',
               email: v => /.+@.+/.test(v) || 'E-mail must be valid',
           }
-        },
+        }
       }
+    }
 </script>
 
 <style scoped>
