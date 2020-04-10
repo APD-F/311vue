@@ -232,7 +232,7 @@ export default {
                 this.arrDone = this.arrDone.filter(element => element.id != id);
     },
     submittask() {
-      this.$http.post('./api/tasks/createTask.php', this.arrBacklog[0])
+      this.$http.post('./api/tasks/createTask.php', this.arrBacklog[this.arrBacklog.length-1])
           .then(response => {
             console.log(response);
           }, error => {
