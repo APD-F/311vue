@@ -53,7 +53,7 @@
                         </v-card-title>
                         <v-card-text>{{element.description}}</v-card-text>
                         <div class="text-center"><v-chip class="ma-2" color="white" outlined>
-                        <v-icon left>mdi-account</v-icon> {{element.person}}</v-chip></div>
+                        <v-icon left>mdi-account</v-icon> {{element.username}}</v-chip></div>
                         </v-card>
                     
                     </div>
@@ -75,7 +75,7 @@
                         <v-card-title >{{element.title}}<v-spacer></v-spacer><three-dot-menu></three-dot-menu></v-card-title>
                         <v-card-text>{{element.description}}</v-card-text>
                         <div class="text-center"><v-chip class="ma-2" color="white" outlined>
-                        <v-icon left>mdi-account</v-icon> {{element.person}}</v-chip></div>
+                        <v-icon left>mdi-account</v-icon> {{element.username}}</v-chip></div>
                         </v-card>
                     
                     </div>
@@ -127,7 +127,7 @@
                         </v-card-title>
                         <v-card-text>{{element.description}}</v-card-text>
                         <div class="text-center"><v-chip class="ma-2" color="white" outlined>
-                        <v-icon left>mdi-account</v-icon> {{element.person}}</v-chip></div>
+                        <v-icon left>mdi-account</v-icon> {{element.username}}</v-chip></div>
                         </v-card>
                     
                     </div>
@@ -164,19 +164,19 @@ export default {
                     id:1,
                     title: "Task1",
                     description: "A very Important task1",
-                    person: "Person1"
+                    username: "Person1"
                 },
                 {
                     id:2,
                     title: "Task2",
                     description: "A very Important task2",
-                    person: "Person2"
+                    username: "Person2"
                 },
                 {
                     id:3,
                     title: "Task3",
                     description: "A very Important task3",
-                    person: "Person3"
+                    username: "Person3"
                 }
             ],
             arrInProgress:[],
@@ -197,14 +197,19 @@ export default {
                 id: this.arrBacklog.length+this.arrInProgress.length+this.arrDone.length+1,
                 title: this.title,
                 description: this.description,
-                person: this.person
+                username: this.username,
+                status: 1,
+                colour: 111111,
+                deadline: "2020-04-09 10:10:10",
+                projectid: 1
+
             }
             this.arrBacklog = [...this.arrBacklog, newTask];
             this.submittask();
             //this.arrBacklog.push({id: this.arrBacklog.length+this.arrInProgress.length+this.arrDone.length+1,title: this.title, description: this.description, person:this.person})
             this.title="";
             this.description="";
-            this.person="";
+            this.username="";
             this.dialog = false;
             
         },
