@@ -31,7 +31,7 @@
                     </v-text-field>
                     <v-text-field v-model="description" placeholder="Description">
                     </v-text-field>
-                    <v-text-field v-model="person" placeholder="Person">
+                    <v-text-field v-model="username" placeholder="Person">
                     </v-text-field>
                     <v-btn @click="add">Add</v-btn>
                     <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
@@ -161,22 +161,34 @@ export default {
             person: "",
             arrBacklog: [
                 {
-                    id:1,
+                    //id:1,
                     title: "Task1",
                     description: "A very Important task1",
-                    username: "Person1"
+                    username: "Person1",
+                    status: 1,
+                    colour: 111111,
+                    deadline: "2020-04-09 10:10:10",
+                    projectid: 1
                 },
                 {
-                    id:2,
+                    //id:2,
                     title: "Task2",
                     description: "A very Important task2",
-                    username: "Person2"
+                    username: "Person2",
+                    status: 1,
+                    colour: 111111,
+                    deadline: "2020-04-09 10:10:10",
+                    projectid: 1
                 },
                 {
-                    id:3,
+                    //id:3,
                     title: "Task3",
                     description: "A very Important task3",
-                    username: "Person3"
+                    username: "Person3",
+                    status: 1,
+                    colour: 111111,
+                    deadline: "2020-04-09 10:10:10",
+                    projectid: 1
                 }
             ],
             arrInProgress:[],
@@ -194,12 +206,12 @@ export default {
     methods:{
         add() {
             const newTask = {
-                id: this.arrBacklog.length+this.arrInProgress.length+this.arrDone.length+1,
+                //id: this.arrBacklog.length+this.arrInProgress.length+this.arrDone.length+1,
                 title: this.title,
                 description: this.description,
                 username: this.username,
                 status: 1,
-                colour: 111111,
+                colour: "111111",
                 deadline: "2020-04-09 10:10:10",
                 projectid: 1
 
