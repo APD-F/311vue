@@ -203,19 +203,17 @@
             <v-card-title>Your Tasks</v-card-title>
             <v-card-subtitle>All your tasks in all your projects</v-card-subtitle>
             <v-card-text>
-                <div>
-                <v-card hover tile elevation="2">
-                <v-card-title>CSCI311</v-card-title>
+              <v-list>
+                <v-list-item
+                  v-for="(item, index) in items"
+                  :key="index"
+                  @click="0"
+                >
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item>
                 <personal-notes>
                 </personal-notes>
-                </v-card>
-                </div>
-
-                <div>
-                <v-card hover tile elevation="2">
-                <v-card-title>CSCI375</v-card-title>
-                </v-card>
-                </div>
+              </v-list>
             </v-card-text>
         </div>
     </v-card>
@@ -300,7 +298,6 @@
               username
               <v-text-field
                 ref="username"
-                label= "username"
                 name= "username"
                 v-model="username"
                 :rules="[rules.required]"
@@ -310,7 +307,6 @@
               password
               <v-text-field
               ref="password"
-              label= "password"
               name= "password"
                 v-model="password"
                 :rules="[rules.required]"
@@ -318,7 +314,7 @@
                 required
               ></v-text-field>
 
-              <v-btn small @click="loginBtn()">login</v-btn>
+              <v-btn small @click="loginBtn(password,username)">login</v-btn>
               <v-spacer></v-spacer>
               <v-btn  small @click="changePage(6)">register</v-btn>
           </v-card-text>
@@ -345,6 +341,7 @@
           <v-card-text>
               username
               <v-text-field
+                ref="username"
                 v-model="username"
                 :rules="[rules.required]"
                 required
@@ -352,6 +349,7 @@
 
               password
               <v-text-field
+              ref="password"
                 v-model="password"
                 :rules="[rules.required]"
                 :type="false ? 'text' : 'password'"
@@ -360,6 +358,7 @@
 
               comfirmed password
               <v-text-field
+              ref="cpassword"
                 v-model="cpassword"
                 :rules="[rules.required]"
                 :type="false ? 'text' : 'password'"
@@ -368,6 +367,7 @@
 
               email
               <v-text-field
+              ref="email"
                 v-model="email"
                 :rules='emailRules'
                 required
@@ -375,12 +375,13 @@
 
               name
               <v-text-field
+              ref="name"
                 v-model="name"
                 :rules="[rules.required]"
                 required
               ></v-text-field>
 
-              <v-btn small @click="registerBtn()">register</v-btn>
+              <v-btn small @click="registerBtn(username,password, email, name)">register</v-btn>
 
           </v-card-text>
       </div>
@@ -513,16 +514,16 @@
         this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     },
 
-    loginBtn(){
+    loginBtn(password, username){
       if(this.valid==true){
-        this.logInMethod(this.password, this.username);
+        this.logInMethod(password, username);
         this.changePage(2);
       }
     },
 
-    registerBtn(){
+    registerBtn(username,password, email, name){
       if(this.registerValid==true){
-        this.registerMethod();
+        this.registerMethod(username,password, email, name);
         this.changePage(5);
       }
     },
@@ -737,8 +738,8 @@
           });
       },
 
-      registerMethod() {
-        this.$http.post('./api/user/register.php')
+      registerMethod(username,password, email, name) {
+        this.$http.post('./api/user/register.php',{params:{username:username ,password:password, email:email, name:name}})
         .then(response => {
             console.log(response);
           }, error => {
